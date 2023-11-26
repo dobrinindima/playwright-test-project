@@ -1,0 +1,13 @@
+{
+  "name": "playwright-test-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dobrinindima/playwright-test-project.git",
+  "author": "Dmytro <dobrinindima@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.10.0"
+  },
+  "scripts": {}
+}
