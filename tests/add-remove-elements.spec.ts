@@ -11,12 +11,10 @@ test.describe('Add/Remove Elements', () => {
   })
 
   test('has correct title', async ({ page }) => {
-    // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/The Internet/);
   });
 
   test('has correct url', async ({ page }) => {
-    // Expect url to be correct.
     await expect(page).toHaveURL('/add_remove_elements/');
   });
 
