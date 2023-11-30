@@ -17,7 +17,6 @@ test.describe('Basic Auth', () => {
     })
 
     test('with correct name and password @smoke', async ({ page }) => {
-        console.log(username);
         const base64Credentials = Buffer.from(`${username}:${password}`).toString('base64');
         await page.setExtraHTTPHeaders({ Authorization: `Basic ${base64Credentials}` });
         await page.getByRole('link', { name: 'Basic Auth' }).click();
