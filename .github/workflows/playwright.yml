@@ -31,3 +31,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
