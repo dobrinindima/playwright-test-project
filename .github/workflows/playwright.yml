@@ -1,35 +1,26 @@
-name: Test Workflow
+name: Playwright Tests
 on:
   push:
     branches:
-      - '*'
+      - "*"
   pull_request:
     branches: [main, master]
+env:
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
 jobs:
-  common-setup:
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-  test:
-    needs: common-setup
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
+          node-version: 16
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm install -g yarn && yarn
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: Run Playwright tests
