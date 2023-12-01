@@ -5,25 +5,71 @@ on:
   pull_request:
     branches: [main, master]
 jobs:
-  test:
-    timeout-minutes: 60
+  common-setup:
     runs-on: ubuntu-latest
-
-    env:
-      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
-      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 16
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
-        run: npm install -g yarn && yarn
+        run: yarn --frozen-lockfile
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
+
+  test:
+    needs: common-setup
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+    steps:
       - name: Run Playwright tests
         run: yarn playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  smoke:
+    needs: common-setup
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+    steps:
+      - name: Run Playwright @smoke tests
+        run: yarn playwright test --grep @smoke
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  regression:
+    needs: common-setup
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+    steps:
+      - name: Run Playwright @regression tests
+        run: yarn playwright test --grep @regression
       - uses: actions/upload-artifact@v3
         if: always()
         with:
