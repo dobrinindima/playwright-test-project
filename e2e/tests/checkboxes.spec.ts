@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { CheckboxesPage } from './pages/checkboxes-page';
+import { CheckboxesPage } from '../pages/checkboxes-page';
 
 test.describe('Checkboxes', () => {
     test.setTimeout(8000);
