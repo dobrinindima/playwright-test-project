@@ -19,12 +19,12 @@ test.describe('Add/Remove Elements', () => {
   });
 
   test('has h3', async ({ page }) => {
-    await expect(page.getByRole('heading')).toContainText('Add/Remove Elements');
+    await expect(page.getByRole('heading', { name: 'Add/Remove Elements' })).toBeVisible();
   })
 
   test('add and remove one element', async ({ page }) => {
-    const addButton = await page.getByRole('button', { name: 'Add Element' });
-    const deleteButton = await page.getByRole('button', { name: 'Delete' });
+    const addButton = page.getByRole('button', { name: 'Add Element' });
+    const deleteButton = page.getByRole('button', { name: 'Delete' });
 
     await addButton.click();
     await expect(deleteButton).toBeVisible();
@@ -39,12 +39,12 @@ test.describe('Add/Remove Elements', () => {
 
     for (let i = 0; i < 3; i++) {
       await addButton.click();
-      await expect(await page.locator('//button[text()="Delete"]').count()).toBe(i + 1);
+      expect(await page.locator('//button[text()="Delete"]').count()).toBe(i + 1);
     }
 
     for (let i = 3; i > 0; i--) {
       await deleteButton.click();
-      await expect(await page.locator('//button[text()="Delete"]').count()).toBe(i - 1);
+      expect(await page.locator('//button[text()="Delete"]').count()).toBe(i - 1);
     }
   })
 });

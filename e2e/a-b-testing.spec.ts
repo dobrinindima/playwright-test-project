@@ -19,7 +19,7 @@ test.describe("A/B Testing page", () => {
   });
 
   test('has h3', async ({ page }) => {
-    await expect(page.getByRole('heading')).toContainText('A/B Test');
+    await expect(page.getByRole('heading', { name: 'A/B Test' })).toBeVisible();
     await expect(page.getByText('Also known as split testing.')).toBeVisible();
   })
 })
