@@ -20,15 +20,15 @@ test.describe('Broken Images', () => {
     });
 
     test('has h3', async ({ page }) => {
-        await expect(page.getByRole('heading')).toContainText('Broken Images');
+        await expect(page.getByRole('heading', { name: 'Broken Images' })).toBeVisible();
     })
 
     test('there are broken images on the page', async ({ page }) => {
-        await expect(await page.locator('//*[@src="asdf.jpg"]')).toBeVisible();
-        await expect(await page.locator('//*[@src="hjkl.jpg"]')).toBeVisible();
+        await expect(page.locator('//*[@src="asdf.jpg"]')).toBeVisible();
+        await expect(page.locator('//*[@src="hjkl.jpg"]')).toBeVisible();
     })
 
     test('there is the blank avatar on the page', async ({ page }) => {
-        await expect(await page.locator('//*[@src="img/avatar-blank.jpg"]')).toBeVisible();
+        await expect(page.locator('//*[@src="img/avatar-blank.jpg"]')).toBeVisible();
     })
 })

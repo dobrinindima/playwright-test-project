@@ -19,14 +19,14 @@ test.describe('Challenging DOM', () => {
     });
 
     test('has h3', async ({ page }) => {
-        await expect(page.getByRole('heading')).toContainText('Challenging DOM');
+        await expect(page.getByRole('heading', { name: 'Challenging DOM' })).toBeVisible();
         await expect(page.getByText('The hardest part in automated web testing is finding the best locators')).toBeVisible();
     })
 
     test('the table has correct column names', async ({ page }) => {
         const elements = (await page.locator('//table/thead/tr').allInnerTexts()).toString().split('\t');
         
-        await expect(elements).toEqual(['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', 'Diceret', 'Action']);
+        expect(elements).toEqual(['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', 'Diceret', 'Action']);
     })
 
     test('the table has the correct entry in each row',async ({page}) => {
@@ -35,7 +35,7 @@ test.describe('Challenging DOM', () => {
         let myArray: any = [];
 
         for (let i = rows; i > 0; i--) {
-            let rowText = await (await page.locator('//table/tbody/tr').nth(i).allInnerTexts()).toString().split('\t');
+            let rowText = (await page.locator('//table/tbody/tr').nth(i).allInnerTexts()).toString().split('\t');
             myArray.push(rowText);
         }
 
@@ -51,6 +51,6 @@ test.describe('Challenging DOM', () => {
             ['Iuvaret2', 'Apeirian2', 'Adipisci2', 'Definiebas2', 'Consequuntur2', 'Phaedrum2', 'edit delete'],
             ['Iuvaret1', 'Apeirian1', 'Adipisci1', 'Definiebas1', 'Consequuntur1', 'Phaedrum1', 'edit delete']
           ]
-        await expect(myArray).toEqual(actualArray);
+        expect(myArray).toEqual(actualArray);
     })
 })
