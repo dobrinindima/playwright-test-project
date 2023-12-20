@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { CheckboxesPage } from '../pages/checkboxes-page';
+import { assert } from 'chai';
 
 test.describe('Checkboxes', () => {
     test.setTimeout(8000);
@@ -52,5 +53,25 @@ test.describe('Checkboxes', () => {
         await expect(checkboxesPage.checkboxSecond).toBeChecked();
         await checkboxesPage.changeCheckboxState(2, false);
         await expect(checkboxesPage.checkboxSecond).not.toBeChecked();
+    })
+
+    test('Growth of a Population', async () => {
+        const nbYear = (p0: number, percent: number, aug: number, p: number): number => {
+            let i: number;
+
+            for (i = 0; p0 < p; i++) {
+                p0 += p0 * (percent / 100) + aug;
+            }
+
+            return i;
+        }
+
+        function testing(p0: number, percent: number, aug: number, p: number, expected: number) {
+            assert.strictEqual(nbYear(p0, percent, aug, p), expected);
+        }
+        testing(1500, 5, 100, 5000, 15);
+        testing(1500000, 2.5, 10000, 2000000, 10);
+        testing(1500000, 0.25, 1000, 2000000, 94);
+        testing(1500000, 0.25, -1000, 2000000, 151);
     })
 })

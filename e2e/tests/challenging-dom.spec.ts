@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe('Challenging DOM', () => {
+    test.setTimeout(8000);
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/challenging_dom');
