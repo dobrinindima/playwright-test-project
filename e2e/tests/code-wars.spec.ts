@@ -81,4 +81,51 @@ test.describe('Code Wars', () => {
         assert.strictEqual(getSum(0, 1), 1);
         assert.strictEqual(getSum(-1, 2), 2);
     })
+
+    test('Review test', async () => {
+        // Умова:
+        // Створіть функцію, яка приймає на вхід enum (який містить дві ролі: "юзер" та "менеджер") та вхідний рядок, в цій функції використайте switch,
+        // якщо вхідний enum має значення "юзер", функція повертає true або false, в залежності від того, чи є вхідний рядок паліндромом
+        // (послідовність символів, яка читається однаково як зліва направо, так і справа наліво).Якщо ж enum має значення "менеджер",
+        // функція повертає об'єкт, який відповідає певному інтерфейсу, інтерфейс опишіть самостійно.
+
+        interface MyInterface {
+            name: string;
+            role: string;
+        }
+
+        enum Role {
+            user = 'user',
+            manager = 'manager',
+            unknown = 'unknown'
+        }
+
+        function myFunc(account: string, role: Role) {
+            
+            switch (role) {
+                case Role.user:
+                    console.log('User role');
+                    const myString = account.toLowerCase();
+                    for (let i = 0; myString.length / 2 > i; i++) {
+                        if (myString[i] !== myString[myString.length - 1 - i]) {
+                            return false;
+                        } return true;
+                    };
+                case Role.manager:
+                    console.log('Manager role');
+                    const person: MyInterface = {
+                        name: 'interfaceName',
+                        role: 'interfaceRole',
+                      };
+                    return person.name;
+                default:
+                    console.log('Unknown role');
+                    break;
+            }
+        }
+
+        expect(myFunc('anna', Role.user)).toBeTruthy;
+        expect(myFunc('anne', Role.manager)).toBe('interfaceName');
+        expect(myFunc('anna', Role.unknown)).toBeUndefined;
+    })
 })

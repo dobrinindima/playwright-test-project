@@ -34,8 +34,8 @@ test.describe('Add/Remove Elements', () => {
   })
 
   test('add and remove many elements', async ({ page }) => {
-    const addButton = await page.getByRole('button', { name: 'Add Element' });
-    const deleteButton = await page.getByRole('button', { name: 'Delete' }).first();
+    const addButton = page.getByRole('button', { name: 'Add Element' });
+    const deleteButton = page.getByRole('button', { name: 'Delete' }).first();
 
     for (let i = 0; i < 3; i++) {
       await addButton.click();
