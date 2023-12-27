@@ -1,5 +1,7 @@
 # playwright-test-project
 
+Autotests for the site https://the-internet.herokuapp.com/ written in Typescript using Playwright
+
 ## Install Playwright (yarn)
 https://playwright.dev/docs/intro#installing-playwright
 
