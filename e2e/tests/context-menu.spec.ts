@@ -6,7 +6,7 @@ test.describe('Context Menu', () => {
 
     test.beforeEach(async ({ page }) => {
         contextMenuPage = new ContextMenuPage(page);
-        await contextMenuPage.goto();
+        await contextMenuPage.open();
     })
 
     test.afterEach(async ({ page }) => {

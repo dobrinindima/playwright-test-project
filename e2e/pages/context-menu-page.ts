@@ -15,7 +15,7 @@ export class ContextMenuPage {
         this.hotSpot = page.locator('#hot-spot');
     }
 
-    async goto() {
+    async open() {
         await this.page.goto('/context_menu');
     }
 }

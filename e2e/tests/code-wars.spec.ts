@@ -101,10 +101,9 @@ test.describe('Code Wars', () => {
         }
 
         function myFunc(account: string, role: Role) {
-            
+
             switch (role) {
                 case Role.user:
-                    console.log('User role');
                     const myString = account.toLowerCase();
                     for (let i = 0; myString.length / 2 > i; i++) {
                         if (myString[i] !== myString[myString.length - 1 - i]) {
@@ -112,14 +111,12 @@ test.describe('Code Wars', () => {
                         } return true;
                     };
                 case Role.manager:
-                    console.log('Manager role');
                     const person: MyInterface = {
                         name: 'interfaceName',
                         role: 'interfaceRole',
-                      };
+                    };
                     return person.name;
                 default:
-                    console.log('Unknown role');
                     break;
             }
         }
@@ -128,4 +125,46 @@ test.describe('Code Wars', () => {
         expect(myFunc('anne', Role.manager)).toBe('interfaceName');
         expect(myFunc('anna', Role.unknown)).toBeUndefined;
     })
+})
+
+test.describe('disemvowel', async () => {
+    test('should pass a sample test', async () => {
+        function disemvowel(str: string): string {
+            return str.replace(/[aeiouAEIOU]/g, '');
+        }
+        assert.strictEqual(disemvowel("This website is for losers LOL!"), "Ths wbst s fr lsrs LL!");
+    });
+});
+
+test.describe('Even or Odd', async () => {
+    function evenOrOdd(n: number): string {
+        if (n % 2 == 0) {
+            return 'Even'
+        } else {
+            return 'Odd'
+        }
+
+        // Or:
+        // return n %2=== 0 ? 'Even' :'Odd';
+    }
+
+    test("evenOrOdd(1) should return 'Odd'", async () => {
+        assert.equal(evenOrOdd(1), "Odd");
+    });
+
+    test("evenOrOdd(2) should return 'Even'", async () => {
+        assert.equal(evenOrOdd(2), "Even");
+    });
+
+    test("evenOrOdd(-1) should return 'Odd'", async () => {
+        assert.equal(evenOrOdd(-1), "Odd");
+    });
+
+    test("evenOrOdd(-2) should return 'Even'", async () => {
+        assert.equal(evenOrOdd(-2), "Even");
+    });
+
+    test("evenOrOdd(0) should return 'Even'", async () => {
+        assert.equal(evenOrOdd(0), "Even");
+    });
 })

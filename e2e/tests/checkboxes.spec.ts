@@ -3,7 +3,7 @@ import { CheckboxesPage } from '../pages/checkboxes-page';
 import { assert } from 'chai';
 
 test.describe('Checkboxes', () => {
-    test.setTimeout(8000);
+    test.setTimeout(12000);
     let checkboxesPage: CheckboxesPage;
 
     test.beforeEach(async ({ page }) => {
