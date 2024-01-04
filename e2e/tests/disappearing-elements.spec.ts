@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { DisappearingElementsPage } from '../pages/disappearing-elements-page';
 
 test.describe('Disappearing Elements', async () => {
-    test.setTimeout(24000);
     let disappearingElementsPage: DisappearingElementsPage;
 
     test.beforeEach(async ({ page }) => {
