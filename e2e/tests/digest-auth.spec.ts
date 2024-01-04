@@ -6,7 +6,7 @@ test.describe('Digest Auth', () => {
 
     test.beforeEach(async ({ page }) => {
         digestAuthPage = new DigestAuthPage(page);
-        await digestAuthPage.goto();
+        await digestAuthPage.open();
     })
 
     test.afterEach(async ({ page }) => {
