@@ -12,9 +12,7 @@ env:
 jobs:
   e2e-tests:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.40.1-jammy
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -22,8 +20,8 @@ jobs:
         node-version: 16
     - name: Install dependencies
       run: yarn --frozen-lockfile
-    # - name: Install Playwright Browsers
-    #   run: yarn playwright install --with-deps
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
     - name: Run Playwright tests
       run: yarn playwright test
     - uses: actions/upload-artifact@v3
