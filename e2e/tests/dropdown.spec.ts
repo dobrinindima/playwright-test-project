@@ -30,26 +30,23 @@ test.describe('Dropdown List', () => {
         const testedOption = 'Option 1'
 
         await dropdownListPage.selectOption(testedOption);
-        const selectedAttributeValue = page.locator('//option[@selected="selected"]');
 
-        expect(await selectedAttributeValue.innerText()).toBe(testedOption);
+        expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
     })
 
     test('select Option 2', async ({ page }) => {
         const testedOption = 'Option 2'
 
         await dropdownListPage.selectOption(testedOption);
-        const selectedAttributeValue = page.locator('//option[@selected="selected"]');
 
-        expect(await selectedAttributeValue.innerText()).toBe(testedOption);
+        expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
     })
 
     test('select Please select an option', async ({ page }) => {
         const testedOption = 'Please select an option'
 
         await dropdownListPage.selectOption(testedOption);
-        const selectedAttributeValue = page.locator('//option[@selected="selected"]');
 
-        expect(await selectedAttributeValue.innerText()).toBe(testedOption);
+        expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
     })
 })

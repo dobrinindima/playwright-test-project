@@ -4,11 +4,13 @@ export class DropdownListPage {
     readonly page: Page;
     readonly h3: Locator;
     readonly dropdown: Locator;
+    readonly selectedOption: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.h3 = page.getByRole('heading', {name: ('Dropdown List')});
         this.dropdown = page.locator('#dropdown');
+        this.selectedOption = page.locator('//option[@selected="selected"]');
     }
 
     async open() {
