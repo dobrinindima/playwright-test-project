@@ -16,6 +16,20 @@
   dependencies:
     undici-types "~5.26.4"
 
+allure-js-commons@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/allure-js-commons/-/allure-js-commons-2.10.0.tgz#59edd18ac283bd58d848e47fc7e625342921a43a"
+  integrity sha512-DgACWBU2dchQD8tQOo5Y0MXx08SSzdgCnKBdwrOu29vITYBXih+0r8SbmrFYQhjAbn8eKMM+mXq+rKtjZRa2oA==
+  dependencies:
+    properties "^1.2.1"
+
+allure-playwright@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/allure-playwright/-/allure-playwright-2.10.0.tgz#f5ff5a1dcc946ed92b056a1d45d7aa3c55b391ca"
+  integrity sha512-zDljPJ/Fnyd2fn7msChtZebwkSVmAGLe/oWK7okGi0Ed+iHZ0E5Vwe5Z5MtUdfLjnT/OkOduwmS7R/DHeTXFSA==
+  dependencies:
+    allure-js-commons "2.10.0"
+
 assertion-error@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/assertion-error/-/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
@@ -88,6 +102,11 @@ playwright@1.40.1:
     playwright-core "1.40.1"
   optionalDependencies:
     fsevents "2.3.2"
+
+properties@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/properties/-/properties-1.2.1.tgz#0ee97a7fc020b1a2a55b8659eda4aa8d869094bd"
+  integrity sha512-qYNxyMj1JeW54i/EWEFsM1cVwxJbtgPp8+0Wg9XjNaK6VE/c4oRi6PNu5p7w1mNXEIQIjV5Wwn8v8Gz82/QzdQ==
 
 type-detect@^4.0.0, type-detect@^4.0.8:
   version "4.0.8"
