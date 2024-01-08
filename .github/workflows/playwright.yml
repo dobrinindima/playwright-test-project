@@ -22,8 +22,8 @@ jobs:
         node-version: 16
     - name: Install dependencies
       run: yarn --frozen-lockfile
-    - name: Install Playwright Browsers
-      run: yarn playwright install --with-deps
+    # - name: Install Playwright Browsers
+    #   run: yarn playwright install --with-deps
     - name: Run Playwright tests
       run: yarn playwright test
     - uses: actions/upload-artifact@v3
