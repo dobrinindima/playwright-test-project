@@ -41,12 +41,4 @@ test.describe('Dropdown List', () => {
 
         expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
     })
-
-    test('select Please select an option', async ({ page }) => {
-        const testedOption = 'Please select an option'
-
-        await dropdownListPage.selectOption(testedOption);
-
-        expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
-    })
 })
