@@ -12,7 +12,7 @@ export class ChallengingDom {
         this.h3 = page.getByRole('heading', { name: ('Challenging DOM') });
         this.mainText = page.getByText('The hardest part in automated web testing is finding the best locators (e.g., ones that well named, unique, and unlikely to change).');
         this.editButton = page.getByRole('link', {name: ('edit')}).first();
-        this.editButton = page.getByRole('link', {name: ('delete')}).first();
+        this.deleteButton = page.getByRole('link', {name: ('delete')}).first();
     }
 
     async open() {

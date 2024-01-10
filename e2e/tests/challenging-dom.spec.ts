@@ -56,4 +56,16 @@ test.describe('Challenging DOM', () => {
         ]
         expect(myArray).toEqual(actualArray);
     })
+
+    test('click edit button', async ({ page }) => {
+        await challengingDom.editButton.click();
+
+        await expect(page).toHaveURL('challenging_dom#edit');
+    })
+
+    test('click delete button', async ({ page }) => {
+        await challengingDom.deleteButton.click();
+
+        await expect(page).toHaveURL('challenging_dom#delete');
+    })
 })

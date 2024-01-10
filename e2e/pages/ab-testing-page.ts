@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-export class ABTestPage {
+export class ABTestingPage {
     readonly page: Page;
     readonly h3: Locator;
     readonly mainText: Locator;
