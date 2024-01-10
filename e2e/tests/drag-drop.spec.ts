@@ -21,7 +21,7 @@ test.describe('Drag and Drop', () => {
         await expect(page).toHaveURL('/drag_and_drop')
     })
 
-    test('has all needed elements', async () => {
+    test('has needed elements', async () => {
         await expect(dragAndDropPage.h3).toBeVisible();
         await expect(dragAndDropPage.columnA).toBeVisible();
         await expect(dragAndDropPage.columnB).toBeVisible();

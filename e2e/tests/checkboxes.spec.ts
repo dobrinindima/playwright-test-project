@@ -18,7 +18,7 @@ test.describe('Checkboxes', () => {
         await expect(page).toHaveTitle('The Internet');
     })
 
-    test('has correct url', async ({ page }) => {
+    test('has correct URL', async ({ page }) => {
         await expect(page).toHaveURL('/checkboxes');
     })
 

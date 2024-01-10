@@ -21,7 +21,7 @@ test.describe('Digest Auth', () => {
         await expect(page).toHaveURL('/digest_auth')
     })
 
-    test('has all needed elements', async () => {
+    test('has needed elements', async () => {
         await expect(digestAuthPage.h3).toBeVisible();
         await expect(digestAuthPage.mainText).toBeVisible();
     })

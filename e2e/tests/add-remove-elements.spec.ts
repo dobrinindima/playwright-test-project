@@ -1,9 +1,12 @@
 import { test, expect } from "@playwright/test";
+import { AddRemoveElementsPage } from '../pages/add-remove-elements-page';
 
 test.describe('Add/Remove Elements', () => {
+  let addRemoveElementsPage: AddRemoveElementsPage;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/add_remove_elements/');
+    addRemoveElementsPage = new AddRemoveElementsPage(page);
+    await addRemoveElementsPage.open();
   })
 
   test.afterEach(async ({ page }) => {
@@ -14,37 +17,32 @@ test.describe('Add/Remove Elements', () => {
     await expect(page).toHaveTitle(/The Internet/);
   });
 
-  test('has correct url', async ({ page }) => {
+  test('has correct URL', async ({ page }) => {
     await expect(page).toHaveURL('/add_remove_elements/');
   });
 
-  test('has h3', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Add/Remove Elements' })).toBeVisible();
+  test('has needed elements', async () => {
+    await expect(addRemoveElementsPage.h3).toBeVisible();
+    await expect(addRemoveElementsPage.addElementButton).toBeVisible();
   })
 
-  test('add and remove one element', async ({ page }) => {
-    const addButton = page.getByRole('button', { name: 'Add Element' });
-    const deleteButton = page.getByRole('button', { name: 'Delete' });
+  test('add and remove one element', async () => {
+    await addRemoveElementsPage.addElementButton.click();
+    await expect(addRemoveElementsPage.deleteButton).toBeVisible();
 
-    await addButton.click();
-    await expect(deleteButton).toBeVisible();
-
-    await deleteButton.click();
-    await expect(deleteButton).toBeHidden();
+    await addRemoveElementsPage.deleteButton.click();
+    await expect(addRemoveElementsPage.deleteButton).toBeHidden();
   })
 
-  test('add and remove many elements', async ({ page }) => {
-    const addButton = page.getByRole('button', { name: 'Add Element' });
-    const deleteButton = page.getByRole('button', { name: 'Delete' }).first();
-
+  test('add and remove many elements', async () => {
     for (let i = 0; i < 3; i++) {
-      await addButton.click();
-      expect(await page.locator('//button[text()="Delete"]').count()).toBe(i + 1);
+      await addRemoveElementsPage.addElementButton.click();
+      expect(await addRemoveElementsPage.deleteButton.count()).toBe(i + 1);
     }
 
     for (let i = 3; i > 0; i--) {
-      await deleteButton.click();
-      expect(await page.locator('//button[text()="Delete"]').count()).toBe(i - 1);
+      await addRemoveElementsPage.deleteButton.first().click();
+      expect(await addRemoveElementsPage.deleteButton.count()).toBe(i - 1);
     }
   })
 });

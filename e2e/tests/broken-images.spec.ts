@@ -1,9 +1,12 @@
 import { test, expect } from "@playwright/test";
+import { BrokenImagesPage } from '../pages/broken-images-page';
 
 test.describe('Broken Images', () => {
+    let brokenImagesPage: BrokenImagesPage;
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('/broken_images');
+        brokenImagesPage = new BrokenImagesPage(page);
+        await brokenImagesPage.open();
     })
 
     test.afterEach(async ({ page }) => {
@@ -15,20 +18,14 @@ test.describe('Broken Images', () => {
         await expect(page).toHaveTitle(/The Internet/);
     });
 
-    test('has correct url', async ({ page }) => {
+    test('has correct URL', async ({ page }) => {
         await expect(page).toHaveURL('/broken_images');
     });
 
-    test('has h3', async ({ page }) => {
-        await expect(page.getByRole('heading', { name: 'Broken Images' })).toBeVisible();
-    })
-
-    test('there are broken images on the page', async ({ page }) => {
-        await expect(page.locator('//*[@src="asdf.jpg"]')).toBeVisible();
-        await expect(page.locator('//*[@src="hjkl.jpg"]')).toBeVisible();
-    })
-
-    test('there is the blank avatar on the page', async ({ page }) => {
-        await expect(page.locator('//*[@src="img/avatar-blank.jpg"]')).toBeVisible();
+    test('has needed elements', async () => {
+        await expect(brokenImagesPage.h3).toBeVisible();
+        await expect(brokenImagesPage.brokenImage1).toBeVisible();
+        await expect(brokenImagesPage.brokenImage2).toBeVisible();
+        await expect(brokenImagesPage.blankAvatar).toBeVisible();
     })
 })
