@@ -21,12 +21,12 @@ test.describe('Dropdown List', () => {
         await expect(page).toHaveURL('/dropdown')
     })
 
-    test('has all needed elements', async () => {
+    test('has needed elements', async () => {
         await expect(dropdownListPage.h3).toBeVisible();
         await expect(dropdownListPage.dropdown).toBeVisible();
     })
 
-    test('select Option 1', async ({ page }) => {
+    test('select Option 1', async () => {
         const testedOption = 'Option 1'
 
         await dropdownListPage.selectOption(testedOption);
@@ -34,7 +34,7 @@ test.describe('Dropdown List', () => {
         expect(await dropdownListPage.selectedOption.innerText()).toBe(testedOption);
     })
 
-    test('select Option 2', async ({ page }) => {
+    test('select Option 2', async () => {
         const testedOption = 'Option 2'
 
         await dropdownListPage.selectOption(testedOption);

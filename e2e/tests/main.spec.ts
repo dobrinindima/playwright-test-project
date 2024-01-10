@@ -10,7 +10,7 @@ test.describe('Main page', () => {
     await page.close();
   })
 
-  test('has title', async ({ page }) => {
+  test('has correct title', async ({ page }) => {
     await expect(page).toHaveTitle(/The Internet/);
   });
 })

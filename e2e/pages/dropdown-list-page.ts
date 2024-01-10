@@ -8,7 +8,7 @@ export class DropdownListPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.h3 = page.getByRole('heading', {name: ('Dropdown List')});
+        this.h3 = page.getByRole('heading', { name: ('Dropdown List') });
         this.dropdown = page.locator('#dropdown');
         this.selectedOption = page.locator('//option[@selected="selected"]');
     }

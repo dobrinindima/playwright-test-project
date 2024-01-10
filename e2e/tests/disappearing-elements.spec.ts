@@ -21,7 +21,7 @@ test.describe('Disappearing Elements', async () => {
         await expect(page).toHaveURL('/disappearing_elements')
     })
 
-    test('has all needed elements', async () => {
+    test('has needed elements', async () => {
         await expect(disappearingElementsPage.h3).toBeVisible();
         await expect(disappearingElementsPage.mainText).toBeVisible();
     })
