@@ -13,7 +13,6 @@ test.describe('Broken Images', () => {
         await page.close();
     })
 
-
     test('has correct title', async ({ page }) => {
         await expect(page).toHaveTitle(/The Internet/);
     });
