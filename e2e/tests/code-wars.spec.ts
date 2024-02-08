@@ -167,4 +167,86 @@ test.describe('Even or Odd', async () => {
     test("evenOrOdd(0) should return 'Even'", async () => {
         assert.equal(evenOrOdd(0), "Even");
     });
+
 })
+
+test.describe('Basic tests', () => {
+    test('My head is at the wrong end!', () => {
+        function fixTheMeerkat(arr: string[]): string[] {
+            const fixedArray: string[] = [];
+
+
+            for (let element of arr) {
+                fixedArray.unshift(element);
+            }
+
+            // arr.forEach((name) => fixedArray.unshift(name));
+
+            return fixedArray;
+
+            // return arr.reverse();
+        }
+
+        expect(fixTheMeerkat(['tail', 'body', 'head'])).toEqual(['head', 'body', 'tail']);
+        expect(fixTheMeerkat(['tails', 'body', 'heads'])).toEqual(['heads', 'body', 'tails']);
+        expect(fixTheMeerkat(['bottom', 'middle', 'top'])).toEqual(['top', 'middle', 'bottom']);
+        expect(fixTheMeerkat(['ground', 'rainbow', 'sky'])).toEqual(['sky', 'rainbow', 'ground']);
+        expect(fixTheMeerkat(['lower legs', 'torso', 'upper legs'])).toEqual(['upper legs', 'torso', 'lower legs']);
+    });
+});
+
+test('Function 1 - hello world', async () => {
+    function greet() {
+        return 'hello world!';
+    }
+    assert.equal(greet(), "hello world!")
+})
+
+test.describe('countSheeps', function () {
+    test("should work correctly", () => {
+        var array1 = [true, true, true, false,
+            true, true, true, true,
+            true, false, true, false,
+            true, false, false, true,
+            true, true, true, true,
+            false, false, true, true];
+
+        function countSheeps(arrayOfSheep: (boolean | undefined | null)[]) {
+            let i: number = 0;
+
+            arrayOfSheep.forEach(element => {
+                if (element === true) {
+                    i += 1;
+                }
+            })
+
+            return i;
+
+            // return arrayOfSheep.filter(Boolean).length;
+            // return arrayOfSheep.filter(e => e === true).length;
+        }
+
+        const result1 = countSheeps(array1);
+        expect(result1).toEqual(17);
+        // expect(result1).toEqual(17, "There are 17 sheeps in total, not " + result1);
+    });
+});
+
+test.describe("getCount", function () {
+    class Kata {
+        static getCount(str: string): number {
+            let i: number = 0;
+            for (let element of str.split('')) {
+                const vowelsArray = ['a', 'e', 'i', 'o', 'u'];
+
+                if (vowelsArray.includes(element)) {
+                    i += 1;
+                }
+            }
+            return i;
+        }
+    }
+    test("should pass a sample test", function () {
+        assert.strictEqual(Kata.getCount("abracadabra"), 5)
+    });
+});
