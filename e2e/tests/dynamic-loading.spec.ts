@@ -38,7 +38,7 @@ test.describe('Dynamically Loaded Page Elements', () => {
         await expect(dynamicLoadingPage.startButton).toBeVisible();
     })
 
-    test('use Start button on the Example 1 page',async () => {
+    test('use Start button on the Example 1 page', async () => {
         await dynamicLoadingPage.openExample1();
         await dynamicLoadingPage.startButton.click();
 
@@ -55,7 +55,7 @@ test.describe('Dynamically Loaded Page Elements', () => {
         await expect(dynamicLoadingPage.startButton).toBeVisible();
     })
 
-    test('use Start button on the Example 2 page',async () => {
+    test('use Start button on the Example 2 page', async () => {
         await dynamicLoadingPage.openExample2();
         await dynamicLoadingPage.startButton.click();
 
