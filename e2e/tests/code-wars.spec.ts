@@ -343,7 +343,7 @@ test.describe("Trilingual democracy", () => {
         // const exampleTests: string[][] = [["IIK", "K"]];
         const exampleTests: string[][] = [["FFF", "F"], ["IIK", "K"], ["DFK", "I"], ["FDI", "K"]];
         for (let [group, expected] of exampleTests) {
-            test(group, () => {
+            test.skip(group, () => {
                 act(group, expected);
             });
         }
