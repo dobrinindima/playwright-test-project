@@ -268,3 +268,84 @@ test('Tech interview Patrianna', () => {
 
     expect(mixArrays(a, b)).toEqual(oracle);
 })
+
+test('Anagram check', () => {
+    let firstString = 'lamp';
+    let secondString = 'palm';
+
+    function anagramDetection(a: string, b: string) {
+        let sortedString1 = firstString.split('').sort().join('');
+        let sortedString2 = secondString.split('').sort().join('');
+
+        return sortedString1 === sortedString2;
+    }
+
+    expect(anagramDetection(firstString, secondString)).toBeTruthy();
+})
+
+test.describe("stringToNumber", () => {
+    test("should work for the examples", () => {
+        function stringToNumber(str: string): number {
+            // return parseInt(str);
+            return Number(str);
+        }
+
+        assert.strictEqual(stringToNumber("1234"), 1234);
+        assert.strictEqual(stringToNumber("605"), 605);
+        assert.strictEqual(stringToNumber("1405"), 1405);
+        assert.strictEqual(stringToNumber("-7"), -7);
+    });
+});
+
+test.describe("Basic tests", () => {
+    function betterThanAverage(classPoints: number[], yourPoints: number): boolean {
+        let sum: number = 0;
+
+        for (let i = 0; i < classPoints.length; i++) {
+            sum += classPoints[i];
+        }
+
+        let average = sum / classPoints.length;
+        return yourPoints > average;
+    }
+
+    test("betterThanAverage([2, 3], 5)", () => assert.isTrue(betterThanAverage([2, 3], 5)));
+    test("betterThanAverage([100, 40, 34, 57, 29, 72, 57, 88], 75)", () => assert.isTrue(betterThanAverage([100, 40, 34, 57, 29, 72, 57, 88], 75)));
+    test("betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69)", () => assert.isTrue(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69)));
+    test("betterThanAverage([41, 75, 72, 56, 80, 82, 81, 33], 50)", () => assert.isFalse(betterThanAverage([41, 75, 72, 56, 80, 82, 81, 33], 50)));
+    test("betterThanAverage([29, 55, 74, 60, 11, 90, 67, 28], 21)", () => assert.isFalse(betterThanAverage([29, 55, 74, 60, 11, 90, 67, 28], 21)));
+});
+
+test.describe("Trilingual democracy", () => {
+    function trilingualDemocracy(group: string): string {
+        const langArray: string[] = group.split('');
+        let neededLang: string;
+
+        if (langArray[0] === langArray[1] && langArray[1] === langArray[2]) {
+            neededLang = langArray[0];
+        } else if (langArray[0] !== langArray[1] && langArray[1] !== langArray[2]) {
+            neededLang = 'I';
+        } else if (langArray.filter(item => item === item).length > 1) {
+            neededLang = langArray.filter((item, index, array) => array.indexOf(item) === array.lastIndexOf(item))[0];
+        } else {
+            neededLang = 'Need to fix';
+        }
+
+        return neededLang;
+    }
+
+    function act(group: string, expected: string) {
+        const actual: String = trilingualDemocracy(group);
+        assert.strictEqual(actual, expected, `for group '${group}'`);
+    }
+
+    test.describe("Example tests", () => {
+        // const exampleTests: string[][] = [["IIK", "K"]];
+        const exampleTests: string[][] = [["FFF", "F"], ["IIK", "K"], ["DFK", "I"], ["FDI", "K"]];
+        for (let [group, expected] of exampleTests) {
+            test(group, () => {
+                act(group, expected);
+            });
+        }
+    });
+});
