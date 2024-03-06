@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { assert } from 'chai';
 
 test.describe('Code Wars', () => {
-    test('Growth of a Population', async () => {
+    test('Growth of a Population', () => {
         const nbYear = (p0: number, percent: number, aug: number, p: number): number => {
             let i: number;
 
@@ -22,7 +22,7 @@ test.describe('Code Wars', () => {
         testing(1500000, 0.25, -1000, 2000000, 151);
     })
 
-    test('Reverse the string', async () => {
+    test('Reverse the string', () => {
         const mainString: string = 'dlrow';
 
         const mainArray = mainString.split('');
@@ -37,7 +37,7 @@ test.describe('Code Wars', () => {
         expect(reversedString).toBe('world');
     })
 
-    test('Number to string', async () => {
+    test('Number to string', () => {
         function numberToString(num: number): string {
             return num.toString();
         }
@@ -45,7 +45,7 @@ test.describe('Code Wars', () => {
         expect(numberToString(67)).toBe('67');
     })
 
-    test('Convert number to reversed array of digits', async () => {
+    test('Convert number to reversed array of digits', () => {
         const digitize = (n: number): number[] => {
             let stringFromNumber = n.toString();
             let arrayFromString = Array.from(stringFromNumber);
@@ -63,7 +63,7 @@ test.describe('Code Wars', () => {
         assert.deepEqual(digitize(0), [0]);
     })
 
-    test('Beginner Series #3 Sum of Numbers', async () => {
+    test('Beginner Series #3 Sum of Numbers', () => {
         function getSum(a: number, b: number): number {
             const min = Math.min(a, b);
             const max = Math.max(a, b);
@@ -82,7 +82,7 @@ test.describe('Code Wars', () => {
         assert.strictEqual(getSum(-1, 2), 2);
     })
 
-    test('Review test', async () => {
+    test('Review test', () => {
         // Умова:
         // Створіть функцію, яка приймає на вхід enum (який містить дві ролі: "юзер" та "менеджер") та вхідний рядок, в цій функції використайте switch,
         // якщо вхідний enum має значення "юзер", функція повертає true або false, в залежності від того, чи є вхідний рядок паліндромом
@@ -127,8 +127,8 @@ test.describe('Code Wars', () => {
     })
 })
 
-test.describe('disemvowel', async () => {
-    test('should pass a sample test', async () => {
+test.describe('disemvowel', () => {
+    test('should pass a sample test', () => {
         function disemvowel(str: string): string {
             return str.replace(/[aeiouAEIOU]/g, '');
         }
@@ -136,7 +136,7 @@ test.describe('disemvowel', async () => {
     });
 });
 
-test.describe('Even or Odd', async () => {
+test.describe('Even or Odd', () => {
     function evenOrOdd(n: number): string {
         if (n % 2 == 0) {
             return 'Even'
@@ -148,23 +148,204 @@ test.describe('Even or Odd', async () => {
         // return n %2=== 0 ? 'Even' :'Odd';
     }
 
-    test("evenOrOdd(1) should return 'Odd'", async () => {
+    test("evenOrOdd(1) should return 'Odd'", () => {
         assert.equal(evenOrOdd(1), "Odd");
     });
 
-    test("evenOrOdd(2) should return 'Even'", async () => {
+    test("evenOrOdd(2) should return 'Even'", () => {
         assert.equal(evenOrOdd(2), "Even");
     });
 
-    test("evenOrOdd(-1) should return 'Odd'", async () => {
+    test("evenOrOdd(-1) should return 'Odd'", () => {
         assert.equal(evenOrOdd(-1), "Odd");
     });
 
-    test("evenOrOdd(-2) should return 'Even'", async () => {
+    test("evenOrOdd(-2) should return 'Even'", () => {
         assert.equal(evenOrOdd(-2), "Even");
     });
 
-    test("evenOrOdd(0) should return 'Even'", async () => {
+    test("evenOrOdd(0) should return 'Even'", () => {
         assert.equal(evenOrOdd(0), "Even");
     });
+
 })
+
+test.describe('Basic tests', () => {
+    test('My head is at the wrong end!', () => {
+        function fixTheMeerkat(arr: string[]): string[] {
+            const fixedArray: string[] = [];
+
+
+            for (let element of arr) {
+                fixedArray.unshift(element);
+            }
+
+            // arr.forEach((name) => fixedArray.unshift(name));
+
+            return fixedArray;
+
+            // return arr.reverse();
+        }
+
+        expect(fixTheMeerkat(['tail', 'body', 'head'])).toEqual(['head', 'body', 'tail']);
+        expect(fixTheMeerkat(['tails', 'body', 'heads'])).toEqual(['heads', 'body', 'tails']);
+        expect(fixTheMeerkat(['bottom', 'middle', 'top'])).toEqual(['top', 'middle', 'bottom']);
+        expect(fixTheMeerkat(['ground', 'rainbow', 'sky'])).toEqual(['sky', 'rainbow', 'ground']);
+        expect(fixTheMeerkat(['lower legs', 'torso', 'upper legs'])).toEqual(['upper legs', 'torso', 'lower legs']);
+    });
+});
+
+test('Function 1 - hello world', () => {
+    function greet() {
+        return 'hello world!';
+    }
+    assert.equal(greet(), "hello world!")
+})
+
+test.describe('countSheeps', () => {
+    test("should work correctly", () => {
+        var array1 = [true, true, true, false,
+            true, true, true, true,
+            true, false, true, false,
+            true, false, false, true,
+            true, true, true, true,
+            false, false, true, true];
+
+        function countSheeps(arrayOfSheep: (boolean | undefined | null)[]) {
+            let i: number = 0;
+
+            arrayOfSheep.forEach(element => {
+                if (element === true) {
+                    i += 1;
+                }
+            })
+
+            return i;
+
+            // return arrayOfSheep.filter(Boolean).length;
+            // return arrayOfSheep.filter(e => e === true).length;
+        }
+
+        const result1 = countSheeps(array1);
+        expect(result1).toEqual(17);
+        // expect(result1).toEqual(17, "There are 17 sheeps in total, not " + result1);
+    });
+});
+
+test.describe("getCount", () => {
+    class Kata {
+        static getCount(str: string): number {
+            let i: number = 0;
+            for (let element of str.split('')) {
+                const vowelsArray = ['a', 'e', 'i', 'o', 'u'];
+
+                if (vowelsArray.includes(element)) {
+                    i += 1;
+                }
+            }
+            return i;
+        }
+    }
+    test("should pass a sample test", () => {
+        assert.strictEqual(Kata.getCount("abracadabra"), 5)
+    });
+});
+
+test('Tech interview Patrianna', () => {
+    function mixArrays(firstArray: number[], secondArray: string[]) {
+        let mixedArray: (number | string)[] = [];
+        for (let i = 0; i < firstArray.length; i++) {
+            mixedArray.push(firstArray[i]);
+            mixedArray.push(secondArray[i]);
+        }
+
+        return mixedArray;
+    }
+
+    let a = [1, 2, 3, 4, 5];
+    let b = ["a", "b", "c", "d", "e"];
+    let oracle = [1, "a", 2, "b", 3, "c", 4, "d", 5, "e"];
+
+    expect(mixArrays(a, b)).toEqual(oracle);
+})
+
+test('Anagram check', () => {
+    let firstString = 'lamp';
+    let secondString = 'palm';
+
+    function anagramDetection(a: string, b: string) {
+        let sortedString1 = firstString.split('').sort().join('');
+        let sortedString2 = secondString.split('').sort().join('');
+
+        return sortedString1 === sortedString2;
+    }
+
+    expect(anagramDetection(firstString, secondString)).toBeTruthy();
+})
+
+test.describe("stringToNumber", () => {
+    test("should work for the examples", () => {
+        function stringToNumber(str: string): number {
+            // return parseInt(str);
+            return Number(str);
+        }
+
+        assert.strictEqual(stringToNumber("1234"), 1234);
+        assert.strictEqual(stringToNumber("605"), 605);
+        assert.strictEqual(stringToNumber("1405"), 1405);
+        assert.strictEqual(stringToNumber("-7"), -7);
+    });
+});
+
+test.describe("Basic tests", () => {
+    function betterThanAverage(classPoints: number[], yourPoints: number): boolean {
+        let sum: number = 0;
+
+        for (let i = 0; i < classPoints.length; i++) {
+            sum += classPoints[i];
+        }
+
+        let average = sum / classPoints.length;
+        return yourPoints > average;
+    }
+
+    test("betterThanAverage([2, 3], 5)", () => assert.isTrue(betterThanAverage([2, 3], 5)));
+    test("betterThanAverage([100, 40, 34, 57, 29, 72, 57, 88], 75)", () => assert.isTrue(betterThanAverage([100, 40, 34, 57, 29, 72, 57, 88], 75)));
+    test("betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69)", () => assert.isTrue(betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 69)));
+    test("betterThanAverage([41, 75, 72, 56, 80, 82, 81, 33], 50)", () => assert.isFalse(betterThanAverage([41, 75, 72, 56, 80, 82, 81, 33], 50)));
+    test("betterThanAverage([29, 55, 74, 60, 11, 90, 67, 28], 21)", () => assert.isFalse(betterThanAverage([29, 55, 74, 60, 11, 90, 67, 28], 21)));
+});
+
+test.describe("Trilingual democracy", () => {
+    function trilingualDemocracy(group: string): string {
+        const langArray: string[] = group.split('');
+        let neededLang: string;
+
+        if (langArray[0] === langArray[1] && langArray[1] === langArray[2]) {
+            neededLang = langArray[0];
+        } else if (langArray[0] !== langArray[1] && langArray[1] !== langArray[2]) {
+            neededLang = 'I';
+        } else if (langArray.filter(item => item === item).length > 1) {
+            neededLang = langArray.filter((item, index, array) => array.indexOf(item) === array.lastIndexOf(item))[0];
+        } else {
+            neededLang = 'Need to fix';
+        }
+
+        return neededLang;
+    }
+
+    function act(group: string, expected: string) {
+        const actual: String = trilingualDemocracy(group);
+        assert.strictEqual(actual, expected, `for group '${group}'`);
+    }
+
+    test.describe("Example tests", () => {
+        // const exampleTests: string[][] = [["IIK", "K"]];
+        const exampleTests: string[][] = [["FFF", "F"], ["IIK", "K"], ["DFK", "I"], ["FDI", "K"]];
+        for (let [group, expected] of exampleTests) {
+            test.skip(group, () => {
+                act(group, expected);
+            });
+        }
+    });
+});

@@ -6,11 +6,15 @@
   "author": "Dmytro <dobrinindima@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.40.1",
+    "@playwright/test": "^1.42.1",
+    "@types/chai": "^4.3.11",
     "@types/node": "^20.10.0",
+    "ajv": "^8.0.0",
     "dotenv": "^16.3.1"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test"
+  },
   "dependencies": {
     "chai": "^4.3.10"
   }
