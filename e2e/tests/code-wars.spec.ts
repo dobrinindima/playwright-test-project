@@ -16,6 +16,7 @@ test.describe('Code Wars', () => {
         function testing(p0: number, percent: number, aug: number, p: number, expected: number) {
             assert.strictEqual(nbYear(p0, percent, aug, p), expected);
         }
+        testing(1000, 2, 50, 1200, 3);
         testing(1500, 5, 100, 5000, 15);
         testing(1500000, 2.5, 10000, 2000000, 10);
         testing(1500000, 0.25, 1000, 2000000, 94);
@@ -349,3 +350,59 @@ test.describe("Trilingual democracy", () => {
         }
     });
 });
+
+test.describe('countPositivesSumNegatives', () => {
+    function countPositivesSumNegatives(input: number[]) {
+        if (!input || input.length === 0) {
+            return [];
+        }
+
+        let countPositives = 0;
+        let sumNegatives = 0;
+
+        for (let element of input) {
+            if (element > 0) {
+                countPositives += 1;
+            } else if (element < 0) {
+                sumNegatives += element;
+            } else {
+                console.log(`Element is ${element}`);
+            }
+        }
+
+        return [countPositives, sumNegatives];
+
+        // return input && input.length
+        // ? [
+        //     input.filter((p: number) => p > 0).length,
+        //     input
+        //       .filter((n: number) => n < 0)
+        //       .reduce((a: number, b: number) => a + b, 0),
+        //   ]
+        // : [];
+    }
+
+    test('basic tests', () => {
+        let testData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]
+        let actual = countPositivesSumNegatives(testData)
+        let expected: any[] = [10, -65]
+        assert.deepEqual(actual, expected)
+
+        testData = [0, 2, 3, 0, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14]
+        actual = countPositivesSumNegatives(testData)
+        expected = [8, -50]
+        assert.deepEqual(actual, expected)
+    })
+})
+
+test.describe('Zona3000', () => {
+    const nonUniqueNumbers = [3, 5, 4, 2, 1, 6, 8, 7, 9, 5, 6, 9];
+
+    test('return an array of odd values', () => {
+        console.log(nonUniqueNumbers.filter((element) => element % 2 != 0));
+    })
+
+    test('use map', () => {
+        console.log(nonUniqueNumbers.map((element) => element * 2));
+    })
+})

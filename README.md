@@ -36,3 +36,6 @@ https://playwright.dev/docs/intro#installing-playwright
 
 ## Auto generate tests with Codegen.
   yarn playwright codegen
+
+## To run k6 performance testing file use the following
+  k6 run --vus 10 --duration 1m e2e/tests/k6-performance.ts
