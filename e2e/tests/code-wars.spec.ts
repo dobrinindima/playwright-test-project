@@ -366,7 +366,7 @@ test.describe('countPositivesSumNegatives', () => {
             } else if (element < 0) {
                 sumNegatives += element;
             } else {
-                console.log(`Element is ${element}`);
+                // console.log(`Element is ${element}`);
             }
         }
 
@@ -395,14 +395,14 @@ test.describe('countPositivesSumNegatives', () => {
     })
 })
 
-test.describe('Zona3000', () => {
+test.describe('Tech interview Zona3000', () => {
     const nonUniqueNumbers = [3, 5, 4, 2, 1, 6, 8, 7, 9, 5, 6, 9];
 
     test('return an array of odd values', () => {
-        console.log(nonUniqueNumbers.filter((element) => element % 2 != 0));
+        expect(nonUniqueNumbers.filter((element) => element % 2 != 0)).toEqual([3, 5, 1, 7, 9, 5, 9]);
     })
 
     test('use map', () => {
-        console.log(nonUniqueNumbers.map((element) => element * 2));
+        expect(nonUniqueNumbers.map((element) => element * 2)).toEqual([6, 10, 8, 4, 2, 12, 16, 14, 18, 10, 12, 18]);
     })
 })

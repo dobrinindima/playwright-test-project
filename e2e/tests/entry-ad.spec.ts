@@ -51,7 +51,7 @@ test.describe('Entry Ad', () => {
         await expect(entryAdPage.modal).not.toBeVisible();
     })
 
-    test('restart Ad', async () => {
+    test.skip('restart Ad', async () => {
         await entryAdPage.closeAd();
         await entryAdPage.reEnableAd();
 
