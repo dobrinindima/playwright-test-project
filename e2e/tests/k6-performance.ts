@@ -3,7 +3,7 @@ import { sleep } from 'k6';
 
 const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMSwiaWF0IjoxNzExNTQ4NDc2LCJleHAiOjE3MTE1NTIwNzZ9.fYnInjxrO5Kr6Ue7lOCLL6zZeG5ccJ3U9YdM88opu_w';
 
-export default function () {
+export function sendReq() {
     let headers = {
         'Authorization': `Bearer ${authToken}`
     };
