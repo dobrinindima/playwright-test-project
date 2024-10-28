@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, APIRequest, APIRequestContext } from '@playwright/test';
 import { assert } from 'chai';
+import axios from 'axios';
 
 test.describe('Code Wars', () => {
     test('Growth of a Population', () => {
@@ -404,5 +405,75 @@ test.describe('Tech interview Zona3000', () => {
 
     test('use map', () => {
         expect(nonUniqueNumbers.map((element) => element * 2)).toEqual([6, 10, 8, 4, 2, 12, 16, 14, 18, 10, 12, 18]);
+    })
+})
+
+test.describe('Review FavBet', () => {
+    test('отримати імʼя першого юзера', () => {
+        const response = {
+            status: "success",
+            data: {
+                'some users': [
+                    {
+                        name: 'Alex',
+                        age: 33,
+                    },
+                    {
+                        name: 'Vlad',
+                        age: 30,
+                    }
+                ]
+            }
+        }
+
+        const userArrays = Object.values(response.data)[0];
+        const firstUserName = userArrays[0].name;
+        console.log(firstUserName);
+
+        expect(firstUserName).toBe('Alex');
+    })
+
+    test('отримати з АПІ запиту відповідь', async () => {
+        // https://api.sampleapis.com/beers/ale - не працює посилання, взяв https://jsonplaceholder.typicode.com/todos
+        // отримати апі запитом список напоїв та вивести в консоль назви напоїв та їх ціну якщо вона дешевше 5$. - Вивів ід та тайтл для юзерів, ід яких менше 5
+        // Обʼєкт що отримується має бути типізованим (включати в собі price: string, name: string) - через те що не працює оригінальна лінка, взяв id: string, title: string
+        // Типізація об'єкта напою
+
+        interface User {
+            id: number;
+            title: string;
+        }
+
+        async function getAffordableUsers() {
+            const response = await axios.get<User[]>('https://jsonplaceholder.typicode.com/todos');
+            const users = response.data;
+
+            const affordableUsers = users.filter((user) => user.id < 5);
+
+            affordableUsers.forEach((user) => {
+                console.log(`ID: ${user.id}, Title: ${user.title}`);
+            });
+        }
+
+        await getAffordableUsers();
+
+        // Case 2 Відправка POST запиту та перевірка створеного посту
+        interface CreatedUser {
+            data: {
+                title: string,
+                author: string
+            },
+            id: number
+        }
+
+        const responsePost = await axios.post<CreatedUser>('https://jsonplaceholder.typicode.com/posts', {
+            data: {
+                title: 'Book Title',
+                author: 'John Doe',
+            }
+        });
+
+        expect(responsePost.data.data.author).toBe('John Doe');
+        expect(responsePost.data.data.title).toBe('Book Title');
     })
 })
