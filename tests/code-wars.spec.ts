@@ -1,4 +1,4 @@
-import { test, expect, APIRequest, APIRequestContext } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { assert } from 'chai';
 import axios from 'axios';
 
@@ -476,23 +476,4 @@ test.describe('Review FavBet', () => {
         expect(responsePost.data.data.author).toBe('John Doe');
         expect(responsePost.data.data.title).toBe('Book Title');
     })
-})
-
-test('1768. Merge Strings Alternately', async () => {
-    // You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
-    // Return the merged string.
-    
-    function mergeAlternately(word1: string, word2: string) {
-        let alternatelyArray: string[] = [];
-        const count = word1.length > word2.length ? word1.length : word2.length;
-
-        for (let i = 0; i < count; i++) {
-            alternatelyArray.push(word1.split('')[i]);
-            alternatelyArray.push(word2.split('')[i]);
-        }
-
-        return alternatelyArray.join('');
-    }
-
-    console.log(mergeAlternately('ab', 'pqrs'));
 })
