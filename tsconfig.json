@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs", // або інший стандарт, наприклад, esnext
+    "strict": true
+  }
+}
